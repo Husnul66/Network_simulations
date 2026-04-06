@@ -1,90 +1,76 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+    <a href="index.html" class="text-blue-400 hover:underline mb-4 inline-block">← Ana Menüye Dön</a>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Husnul66 - OSI Katman Gezgini</title>
+    <title>Husnul66 | Ağ Simülasyon Portalı</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .layer-btn { transition: all 0.3s ease; }
-        .layer-btn:hover { transform: translateX(10px); }
-        .active-layer { border-left: 8px solid white; box-shadow: 0 0 15px rgba(0,0,0,0.3); }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+        }
     </style>
 </head>
-<body class="bg-slate-900 text-slate-100 font-sans min-h-screen p-4 md:p-8">
-    <header class="max-w-6xl mx-auto mb-8 border-b border-slate-700 pb-4">
-        <h1 class="text-3xl font-bold text-blue-400">7 Katmanlı OSI Modeli Gezgini</h1>
-        <p class="text-slate-400">Fırat Üniversitesi Bilgisayar Ağları Dersi Çalışma Aracı</p>
+<body class="bg-[#0f172a] text-slate-100 min-h-screen flex flex-col items-center justify-center p-6">
+
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-900/20 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-emerald-900/10 rounded-full blur-[120px]"></div>
+    </div>
+
+    <header class="text-center mb-16">
+        <h1 class="text-5xl font-black mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-emerald-400">
+            Ağ Simülasyon Merkezi
+        </h1>
+        <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+            Fırat Üniversitesi Bilgisayar Mühendisliği dersleri için geliştirilmiş etkileşimli öğrenme araçları.
+        </p>
     </header>
 
-    <main class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8">
-        <div class="md:col-span-4 space-y-2" id="layer-list">
+    <main class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl w-full">
+        
+        <a href="osi.html" class="glass-card p-8 rounded-3xl block group">
+            <div class="flex justify-between items-start mb-6">
+                <div class="p-4 bg-blue-500/20 rounded-2xl text-blue-400 group-hover:scale-110 transition-transform">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                </div>
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">7 Katman</span>
             </div>
+            <h2 class="text-2xl font-bold mb-2">OSI Modeli Gezgini</h2>
+            <p class="text-slate-400 text-sm leading-relaxed">
+                Uygulama katmanından fiziksel katmana kadar verinin yolculuğunu ve kapsülleme mantığını keşfedin.
+            </p>
+        </a>
 
-        <div class="md:col-span-8 bg-slate-800 rounded-xl p-6 shadow-2xl border border-slate-700" id="detail-panel">
-            <div class="flex items-center justify-center h-64 text-slate-500 italic">
-                Soldan bir katman seçerek yolculuğa başla...
+        <a href="hamming.html" class="glass-card p-8 rounded-3xl block group">
+            <div class="flex justify-between items-start mb-6">
+                <div class="p-4 bg-emerald-500/20 rounded-2xl text-emerald-400 group-hover:scale-110 transition-transform">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Hata Denetimi</span>
             </div>
-        </div>
+            <h2 class="text-2xl font-bold mb-2">Hamming (7,4) Kodlayıcı</h2>
+            <p class="text-slate-400 text-sm leading-relaxed">
+                Parite bitlerini otomatik hesaplayın ve XOR mantığının hata bulmada nasıl kullanıldığını canlı görün.
+            </p>
+        </a>
+
     </main>
 
-    <script>
-        const osiData = [
-            { id: 7, name: "Uygulama (Application)", color: "bg-purple-600", pdu: "Veri (Data)", protocols: "HTTP, FTP, SMTP, DNS", desc: "Son kullanıcının etkileşime girdiği katmandır. Arayüz sağlar.", analogy: "Mektubu yazan ve gönderen kişi." },
-            { id: 6, name: "Sunum (Presentation)", color: "bg-blue-600", pdu: "Veri (Data)", protocols: "JPEG, GIF, SSL/TLS, ASCII", desc: "Verinin formatlanması, şifrelenmesi ve sıkıştırılması burada yapılır.", analogy: "Mektubun hangi dilde yazıldığı veya zarfın gizliliği." },
-            { id: 5, name: "Oturum (Session)", color: "bg-cyan-600", pdu: "Veri (Data)", protocols: "NetBIOS, RPC, SQL", desc: "Bağlantıların kurulması, yönetilmesi ve sonlandırılmasını sağlar.", analogy: "Telefonu açıp 'Alo' demek ve hat boyu iletişimi sürdürmek." },
-            { id: 4, name: "Taşıma (Transport)", color: "bg-green-600", pdu: "Segment / Datagram", protocols: "TCP, UDP", desc: "Verinin uçtan uca hatasız ve sıralı gitmesini kontrol eder.", analogy: "Kargonun takip numarası ve teslimat garantisi." },
-            { id: 3, name: "Ağ (Network)", color: "bg-yellow-600", pdu: "Paket (Packet)", protocols: "IP, ICMP, ARP, Router", desc: "IP adresleme ve en uygun rotayı (yolu) bulma işini yapar.", analogy: "Zarfın üzerindeki Şehir, Sokak ve Posta Kodu bilgisi." },
-            { id: 2, name: "Veri Bağı (Data Link)", color: "bg-orange-600", pdu: "Çerçeve (Frame)", protocols: "Ethernet, MAC, Switch", desc: "Fiziksel adresleme (MAC) ve yerel hata denetimi yapılır.", analogy: "Mektubun binadaki doğru daire numarasına ulaştırılması." },
-            { id: 1, name: "Fiziksel (Physical)", color: "bg-red-600", pdu: "Bit", protocols: "Hub, Repeater, Kablolar", desc: "Verinin elektrik, ışık veya radyo dalgalarına dönüştüğü yerdir.", analogy: "Mektup kağıdı, mürekkep veya fener ışığı." }
-        ];
+    <footer class="mt-20 text-slate-500 text-sm flex items-center gap-4">
+        <span>Geliştiren: <strong>Husnul66</strong></span>
+        <span class="w-1 h-1 bg-slate-700 rounded-full"></span>
+        <span>2026 | Elazığ</span>
+    </footer>
 
-        const listContainer = document.getElementById('layer-list');
-        const detailPanel = document.getElementById('detail-panel');
-
-        function showDetail(id) {
-            const layer = osiData.find(l => l.id === id);
-            
-            // Aktif buton görseli
-            document.querySelectorAll('.layer-btn').forEach(btn => btn.classList.remove('active-layer', 'ring-2', 'ring-white'));
-            document.getElementById(`btn-${id}`).classList.add('active-layer', 'ring-2', 'ring-white');
-
-            detailPanel.innerHTML = `
-                <div class="animate-fade-in">
-                    <div class="flex items-center gap-4 mb-6">
-                        <span class="text-4xl font-black opacity-30">#${layer.id}</span>
-                        <h2 class="text-3xl font-bold ${layer.color.replace('bg-', 'text-')}">${layer.name}</h2>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-slate-900/50 p-4 rounded-lg">
-                            <h3 class="text-blue-400 font-bold mb-2 uppercase text-xs tracking-widest">Temel Görev</h3>
-                            <p class="text-slate-200">${layer.desc}</p>
-                        </div>
-                        <div class="bg-slate-900/50 p-4 rounded-lg">
-                            <h3 class="text-blue-400 font-bold mb-2 uppercase text-xs tracking-widest">PDU (Veri Birimi)</h3>
-                            <p class="text-2xl font-mono text-white">${layer.pdu}</p>
-                        </div>
-                        <div class="bg-slate-900/50 p-4 rounded-lg">
-                            <h3 class="text-blue-400 font-bold mb-2 uppercase text-xs tracking-widest">Protokol / Cihaz</h3>
-                            <p class="text-slate-200 font-mono text-sm">${layer.protocols}</p>
-                        </div>
-                        <div class="bg-slate-900/50 p-4 rounded-lg border-l-4 border-yellow-500">
-                            <h3 class="text-yellow-500 font-bold mb-2 uppercase text-xs tracking-widest">Beyinde Canlandır (Analoji)</h3>
-                            <p class="text-slate-200 italic">"${layer.analogy}"</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        osiData.forEach(layer => {
-            const btn = document.createElement('button');
-            btn.id = `btn-${layer.id}`;
-            btn.className = `layer-btn w-full ${layer.color} p-4 rounded-lg flex justify-between items-center font-bold text-lg shadow-lg`;
-            btn.innerHTML = `<span>${layer.id}. ${layer.name}</span> <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>`;
-            btn.onclick = () => showDetail(layer.id);
-            listContainer.appendChild(btn);
-        });
-    </script>
 </body>
 </html>
