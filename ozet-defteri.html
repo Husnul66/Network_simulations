@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilgisayar Ağları Özet Defteri</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #1e293b; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; border-radius: 10px; }
+        .nav-item.active { background-color: #3b82f6; color: white; border-left: 4px solid #60a5fa; }
+    </style>
+</head>
+<body class="bg-[#0f172a] text-slate-200 min-h-screen p-4 md:p-8 flex flex-col">
+
+    <header class="mb-6 flex justify-between items-end border-b border-slate-700 pb-4">
+        <div>
+            <a href="./index.html" class="text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-2 mb-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Ana Menüye Dön
+            </a>
+            <h1 class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
+                Dijital Özet Defteri
+            </h1>
+            <p class="text-slate-400 text-sm mt-1">Fırat Üniversitesi Vize/Final Çalışma Notları</p>
+        </div>
+    </header>
+
+    <main class="flex-1 grid grid-cols-1 lg:grid-cols-4 gap-6 overflow-hidden h-[calc(100vh-150px)]">
+        
+        <div class="lg:col-span-1 bg-slate-800 border border-slate-700 rounded-2xl overflow-y-auto custom-scrollbar flex flex-col">
+            <div id="menu-container" class="p-4 space-y-6">
+                </div>
+        </div>
+
+        <div class="lg:col-span-3 bg-slate-900 border border-slate-700 rounded-2xl p-6 md:p-10 overflow-y-auto custom-scrollbar shadow-inner relative">
+            <div id="content-container" class="max-w-3xl mx-auto hidden">
+                <div class="mb-2 flex items-center gap-3">
+                    <span id="c-category" class="bg-blue-900/50 text-blue-400 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-blue-500/30"></span>
+                </div>
+                <h2 id="c-title" class="text-4xl font-bold mb-6 text-white leading-tight"></h2>
+                
+                <div class="bg-slate-800/80 p-5 rounded-xl border-l-4 border-emerald-500 mb-8">
+                    <h3 class="text-emerald-400 text-sm font-bold mb-2 uppercase">Temel Görev (Özet)</h3>
+                    <p id="c-summary" class="text-lg text-slate-200 leading-relaxed"></p>
+                </div>
+
+                <div id="c-details" class="space-y-4 text-slate-300 leading-relaxed">
+                    </div>
+
+                <div id="c-tip-container" class="mt-8 bg-amber-900/20 p-5 rounded-xl border border-amber-500/30 hidden">
+                    <h3 class="text-amber-400 text-sm font-bold mb-2 uppercase flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Mühendislik / Sınav Notu
+                    </h3>
+                    <p id="c-tip" class="text-slate-300 italic"></p>
+                </div>
+            </div>
+
+            <div id="empty-state" class="h-full flex flex-col items-center justify-center text-slate-500">
+                <svg class="w-20 h-20 mb-4 opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                <p class="text-xl font-semibold">Başlamak için soldan bir konu seçin.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const studyData = [
+            {
+                category: "6. Fiziksel Katman",
+                color: "text-red-400",
+                items: [
+                    {
+                        title: "Veri ve Sinyal Dönüşümü",
+                        summary: "Bilgisayardaki 1 ve 0'ların iletim ortamından geçebilmesi için elektriksel, optik veya radyo sinyallerine dönüştürülmesidir.",
+                        details: [
+                            "<strong>Dijital Sinyaller:</strong> Sadece iki voltaj seviyesi (Örn: +5V ve -5V) kullanılır.",
+                            "<strong>Analog Sinyaller:</strong> Sürekli dalga şeklindedir (Sinüs dalgası).",
+                            "Veri iletimi sırasında sinyaller ortamdaki manyetik alanlardan etkilenerek bozulabilir (Gürültü/Noise).",
+                            "Zayıflama (Attenuation): Sinyalin kabloda ilerledikçe enerjisini kaybetmesidir."
+                        ],
+                        tip: "Sınavda sorulursa: Fiziksel katman asla verinin İÇERİĞİYLE ilgilenmez. Sadece 'elektrik var/yok' veya 'ışık var/yok' mantığına bakar. Protokol yoktur, standartlar (AUI, MII, RJ45) vardır."
+                    },
+                    {
+                        title: "Kablolama ve Konnektörler",
+                        summary: "Farklı ağ topolojilerinde kullanılan iletim ortamları ve bu kabloların uçlarına takılan donanımlardır.",
+                        details: [
+                            "<strong>Bükümlü Çift (Twisted Pair):</strong> Elektromanyetik paraziti azaltmak için teller birbirine dolanır. UTP ve STP olarak ikiye ayrılır. RJ45 konnektörü kullanılır.",
+                            "<strong>Koaksiyel Kablo:</strong> Eski TV kabloları gibidir. BNC konnektör ile sonlandırılır.",
+                            "<strong>Fiber Optik:</strong> Elektrik yerine ışık(foton) ile veri taşır. Gürültüden etkilenmez, çok hızlıdır. SC ve ST konnektörleri kullanılır."
+                        ],
+                        tip: "Hoca 'AUI ve MII nedir?' diye sorarsa: Router gibi cihazların farklı fiziksel kablolara (esneklik) bağlanabilmesi için geliştirilmiş donanım arayüz standartlarıdır."
+                    }
+                ]
+            },
+            {
+                category: "7. Veri Bağı Katmanı (Data Link)",
+                color: "text-amber-400",
+                items: [
+                    {
+                        title: "Çerçeveleme (Framing)",
+                        summary: "Ağ katmanından gelen IP paketlerini, kablodan geçebilecek mantıksal veri bloklarına (Çerçeve/Frame) dönüştürme işlemidir.",
+                        details: [
+                            "Ağa gönderilecek ham verinin nerede başlayıp nerede bittiğini alıcının anlaması gerekir.",
+                            "<strong>Header (Başlık):</strong> Alıcı ve göndericinin fiziksel adreslerini (MAC) içerir.",
+                            "<strong>Payload (Veri):</strong> Üst katmandan gelen asıl bilgidir.",
+                            "<strong>Trailer (Kuyruk):</strong> İletim sırasında hata olup olmadığını kontrol etmek için FCS (Frame Check Sequence) bitlerini barındırır."
+                        ],
+                        tip: "Veri bağı katmanının en temel amacı, 1. katmandaki 'aptal ve güvensiz' elektriksel aktarımı, hatalardan arındırılmış 'güvenilir' bir bağa dönüştürmektir."
+                    },
+                    {
+                        title: "Fiziksel Adresleme (MAC) ve Akış Kontrolü",
+                        summary: "Aynı ağ (LAN) üzerindeki cihazların birbirini bulması ve yavaş alıcıların veri bombardımanından korunmasıdır.",
+                        details: [
+                            "<strong>MAC Adresi:</strong> 48 bitlik (6 byte) donanım adresidir. İlk 3 byte'ı üreticiyi (OUI), son 3 byte'ı cihazı tanımlar.",
+                            "<strong>Erişim Kontrolü (CSMA/CD):</strong> Aynı anda birden fazla cihaz kabloya veri yollarsa 'Çarpışma (Collision)' olur. Cihazların hattı dinlemesini ve sıraya girmesini sağlar.",
+                            "<strong>Akış Kontrolü:</strong> Gönderici çok hızlı, alıcı çok yavaşsa, alıcının belleği (buffer) dolar ve veriler kaybolur. Veri bağı katmanı hızları eşitler."
+                        ],
+                        tip: "IP adresi seni farklı bir ülkedeki sunucuya götürür (Posta kodu). MAC adresi ise o binanın içindeki doğru daireyi (Kapı numarası) bulmanı sağlar."
+                    }
+                ]
+            },
+            {
+                category: "3. Ağ Adresleme Türleri",
+                color: "text-purple-400",
+                items: [
+                    {
+                        title: "Kapsülleme ve Adres Hiyerarşisi",
+                        summary: "Bir mesajın göndericiden alıcıya giderken OSI katmanlarında aldığı etiketler ve adres türleridir.",
+                        details: [
+                            "<strong>Fiziksel Adres (MAC):</strong> Veri Bağı katmanında (OSI 2) kullanılır. Veri birimi 'Çerçeve (Frame)'dir. (Örn: 00:1A:2B:3C:4D:5E)",
+                            "<strong>Mantıksal Adres (IP):</strong> Ağ katmanında (OSI 3) kullanılır. Veri birimi 'Paket (Packet/Datagram)'dır. Router'lar (Yönlendiriciler) yolları IP adresine göre çizer. (Örn: 192.168.1.5)",
+                            "<strong>Port Adresi:</strong> Taşıma katmanında (OSI 4) kullanılır. Veri birimi 'Segment'tir. Verinin bilgisayardaki hangi uygulamaya (Web, Email vb.) gideceğini belirtir. (Örn: Port 80)"
+                        ],
+                        tip: "Soket (Socket) Kavramı: Cihazın IP adresi ile uygulamanın Port numarasının birleşimidir. Örn: 192.168.1.5:80"
+                    }
+                ]
+            }
+        ];
+
+        function loadMenu() {
+            const menuContainer = document.getElementById('menu-container');
+            let menuHTML = '';
+
+            studyData.forEach((section, sIndex) => {
+                menuHTML += `
+                    <div>
+                        <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3 border-b border-slate-700 pb-2 ${section.color}">${section.category}</h3>
+                        <ul class="space-y-1">
+                `;
+                section.items.forEach((item, iIndex) => {
+                    menuHTML += `
+                        <li>
+                            <button onclick="showContent(${sIndex}, ${iIndex}, this)" class="nav-item w-full text-left px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-700/50 transition-colors text-sm font-medium">
+                                ${item.title}
+                            </button>
+                        </li>
+                    `;
+                });
+                menuHTML += `</ul></div>`;
+            });
+            menuContainer.innerHTML = menuHTML;
+        }
+
+        function showContent(sIndex, iIndex, btnElement) {
+            // Aktif buton stili
+            document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+            if(btnElement) btnElement.classList.add('active');
+
+            // Ekranları değiştir
+            document.getElementById('empty-state').classList.add('hidden');
+            document.getElementById('content-container').classList.remove('hidden');
+
+            const data = studyData[sIndex].items[iIndex];
+            const category = studyData[sIndex].category;
+
+            document.getElementById('c-category').innerText = category;
+            document.getElementById('c-title').innerText = data.title;
+            document.getElementById('c-summary').innerText = data.summary;
+            
+            // Detayları madde madde bas
+            const detailsHTML = `<ul class="list-disc pl-5 space-y-3">` + 
+                data.details.map(d => `<li>${d}</li>`).join('') + `</ul>`;
+            document.getElementById('c-details').innerHTML = detailsHTML;
+
+            // İpucu varsa göster
+            const tipContainer = document.getElementById('c-tip-container');
+            if (data.tip) {
+                document.getElementById('c-tip').innerText = data.tip;
+                tipContainer.classList.remove('hidden');
+            } else {
+                tipContainer.classList.add('hidden');
+            }
+        }
+
+        loadMenu();
+    </script>
+</body>
+</html>
