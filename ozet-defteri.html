@@ -1,200 +1,192 @@
+---
+
+### 2. Profesyonel Web Arayüzü (HTML Versiyonu)
+Bilgisayarında `detayli-rehber.html` adında bir dosya oluşturup bu kodu içine yapıştır. Tamamen senin notlarına sadık kalınarak hazırlanmış, şık, menülü ve mobil uyumlu bir Cheat Sheet oldu.
+
+```html
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bilgisayar Ağları Özet Defteri</title>
+    <title>Ağ Temelleri Detaylı Rehber</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        body { font-family: 'Inter', sans-serif; }
+        details > summary { list-style: none; cursor: pointer; }
+        details > summary::-webkit-details-marker { display: none; }
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #1e293b; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; border-radius: 10px; }
-        .nav-item.active { background-color: #3b82f6; color: white; border-left: 4px solid #60a5fa; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
     </style>
 </head>
-<body class="bg-[#0f172a] text-slate-200 min-h-screen p-4 md:p-8 flex flex-col">
+<body class="bg-slate-900 text-slate-300 min-h-screen">
 
-    <header class="mb-6 flex justify-between items-end border-b border-slate-700 pb-4">
-        <div>
-            <a href="./index.html" class="text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-2 mb-2">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                Ana Menüye Dön
-            </a>
-            <h1 class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
-                Dijital Özet Defteri
-            </h1>
-            <p class="text-slate-400 text-sm mt-1">Fırat Üniversitesi Vize/Final Çalışma Notları</p>
-        </div>
-    </header>
-
-    <main class="flex-1 grid grid-cols-1 lg:grid-cols-4 gap-6 overflow-hidden h-[calc(100vh-150px)]">
+    <div class="max-w-6xl mx-auto p-4 md:p-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
         
-        <div class="lg:col-span-1 bg-slate-800 border border-slate-700 rounded-2xl overflow-y-auto custom-scrollbar flex flex-col">
-            <div id="menu-container" class="p-4 space-y-6">
-                </div>
-        </div>
-
-        <div class="lg:col-span-3 bg-slate-900 border border-slate-700 rounded-2xl p-6 md:p-10 overflow-y-auto custom-scrollbar shadow-inner relative">
-            <div id="content-container" class="max-w-3xl mx-auto hidden">
-                <div class="mb-2 flex items-center gap-3">
-                    <span id="c-category" class="bg-blue-900/50 text-blue-400 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-blue-500/30"></span>
-                </div>
-                <h2 id="c-title" class="text-4xl font-bold mb-6 text-white leading-tight"></h2>
-                
-                <div class="bg-slate-800/80 p-5 rounded-xl border-l-4 border-emerald-500 mb-8">
-                    <h3 class="text-emerald-400 text-sm font-bold mb-2 uppercase">Temel Görev (Özet)</h3>
-                    <p id="c-summary" class="text-lg text-slate-200 leading-relaxed"></p>
-                </div>
-
-                <div id="c-details" class="space-y-4 text-slate-300 leading-relaxed">
-                    </div>
-
-                <div id="c-tip-container" class="mt-8 bg-amber-900/20 p-5 rounded-xl border border-amber-500/30 hidden">
-                    <h3 class="text-amber-400 text-sm font-bold mb-2 uppercase flex items-center gap-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        Mühendislik / Sınav Notu
-                    </h3>
-                    <p id="c-tip" class="text-slate-300 italic"></p>
-                </div>
-            </div>
-
-            <div id="empty-state" class="h-full flex flex-col items-center justify-center text-slate-500">
-                <svg class="w-20 h-20 mb-4 opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                <p class="text-xl font-semibold">Başlamak için soldan bir konu seçin.</p>
-            </div>
-        </div>
-    </main>
-
-    <script>
-        const studyData = [
-            {
-                category: "6. Fiziksel Katman",
-                color: "text-red-400",
-                items: [
-                    {
-                        title: "Veri ve Sinyal Dönüşümü",
-                        summary: "Bilgisayardaki 1 ve 0'ların iletim ortamından geçebilmesi için elektriksel, optik veya radyo sinyallerine dönüştürülmesidir.",
-                        details: [
-                            "<strong>Dijital Sinyaller:</strong> Sadece iki voltaj seviyesi (Örn: +5V ve -5V) kullanılır.",
-                            "<strong>Analog Sinyaller:</strong> Sürekli dalga şeklindedir (Sinüs dalgası).",
-                            "Veri iletimi sırasında sinyaller ortamdaki manyetik alanlardan etkilenerek bozulabilir (Gürültü/Noise).",
-                            "Zayıflama (Attenuation): Sinyalin kabloda ilerledikçe enerjisini kaybetmesidir."
-                        ],
-                        tip: "Sınavda sorulursa: Fiziksel katman asla verinin İÇERİĞİYLE ilgilenmez. Sadece 'elektrik var/yok' veya 'ışık var/yok' mantığına bakar. Protokol yoktur, standartlar (AUI, MII, RJ45) vardır."
-                    },
-                    {
-                        title: "Kablolama ve Konnektörler",
-                        summary: "Farklı ağ topolojilerinde kullanılan iletim ortamları ve bu kabloların uçlarına takılan donanımlardır.",
-                        details: [
-                            "<strong>Bükümlü Çift (Twisted Pair):</strong> Elektromanyetik paraziti azaltmak için teller birbirine dolanır. UTP ve STP olarak ikiye ayrılır. RJ45 konnektörü kullanılır.",
-                            "<strong>Koaksiyel Kablo:</strong> Eski TV kabloları gibidir. BNC konnektör ile sonlandırılır.",
-                            "<strong>Fiber Optik:</strong> Elektrik yerine ışık(foton) ile veri taşır. Gürültüden etkilenmez, çok hızlıdır. SC ve ST konnektörleri kullanılır."
-                        ],
-                        tip: "Hoca 'AUI ve MII nedir?' diye sorarsa: Router gibi cihazların farklı fiziksel kablolara (esneklik) bağlanabilmesi için geliştirilmiş donanım arayüz standartlarıdır."
-                    }
-                ]
-            },
-            {
-                category: "7. Veri Bağı Katmanı (Data Link)",
-                color: "text-amber-400",
-                items: [
-                    {
-                        title: "Çerçeveleme (Framing)",
-                        summary: "Ağ katmanından gelen IP paketlerini, kablodan geçebilecek mantıksal veri bloklarına (Çerçeve/Frame) dönüştürme işlemidir.",
-                        details: [
-                            "Ağa gönderilecek ham verinin nerede başlayıp nerede bittiğini alıcının anlaması gerekir.",
-                            "<strong>Header (Başlık):</strong> Alıcı ve göndericinin fiziksel adreslerini (MAC) içerir.",
-                            "<strong>Payload (Veri):</strong> Üst katmandan gelen asıl bilgidir.",
-                            "<strong>Trailer (Kuyruk):</strong> İletim sırasında hata olup olmadığını kontrol etmek için FCS (Frame Check Sequence) bitlerini barındırır."
-                        ],
-                        tip: "Veri bağı katmanının en temel amacı, 1. katmandaki 'aptal ve güvensiz' elektriksel aktarımı, hatalardan arındırılmış 'güvenilir' bir bağa dönüştürmektir."
-                    },
-                    {
-                        title: "Fiziksel Adresleme (MAC) ve Akış Kontrolü",
-                        summary: "Aynı ağ (LAN) üzerindeki cihazların birbirini bulması ve yavaş alıcıların veri bombardımanından korunmasıdır.",
-                        details: [
-                            "<strong>MAC Adresi:</strong> 48 bitlik (6 byte) donanım adresidir. İlk 3 byte'ı üreticiyi (OUI), son 3 byte'ı cihazı tanımlar.",
-                            "<strong>Erişim Kontrolü (CSMA/CD):</strong> Aynı anda birden fazla cihaz kabloya veri yollarsa 'Çarpışma (Collision)' olur. Cihazların hattı dinlemesini ve sıraya girmesini sağlar.",
-                            "<strong>Akış Kontrolü:</strong> Gönderici çok hızlı, alıcı çok yavaşsa, alıcının belleği (buffer) dolar ve veriler kaybolur. Veri bağı katmanı hızları eşitler."
-                        ],
-                        tip: "IP adresi seni farklı bir ülkedeki sunucuya götürür (Posta kodu). MAC adresi ise o binanın içindeki doğru daireyi (Kapı numarası) bulmanı sağlar."
-                    }
-                ]
-            },
-            {
-                category: "3. Ağ Adresleme Türleri",
-                color: "text-purple-400",
-                items: [
-                    {
-                        title: "Kapsülleme ve Adres Hiyerarşisi",
-                        summary: "Bir mesajın göndericiden alıcıya giderken OSI katmanlarında aldığı etiketler ve adres türleridir.",
-                        details: [
-                            "<strong>Fiziksel Adres (MAC):</strong> Veri Bağı katmanında (OSI 2) kullanılır. Veri birimi 'Çerçeve (Frame)'dir. (Örn: 00:1A:2B:3C:4D:5E)",
-                            "<strong>Mantıksal Adres (IP):</strong> Ağ katmanında (OSI 3) kullanılır. Veri birimi 'Paket (Packet/Datagram)'dır. Router'lar (Yönlendiriciler) yolları IP adresine göre çizer. (Örn: 192.168.1.5)",
-                            "<strong>Port Adresi:</strong> Taşıma katmanında (OSI 4) kullanılır. Veri birimi 'Segment'tir. Verinin bilgisayardaki hangi uygulamaya (Web, Email vb.) gideceğini belirtir. (Örn: Port 80)"
-                        ],
-                        tip: "Soket (Socket) Kavramı: Cihazın IP adresi ile uygulamanın Port numarasının birleşimidir. Örn: 192.168.1.5:80"
-                    }
-                ]
-            }
-        ];
-
-        function loadMenu() {
-            const menuContainer = document.getElementById('menu-container');
-            let menuHTML = '';
-
-            studyData.forEach((section, sIndex) => {
-                menuHTML += `
-                    <div>
-                        <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3 border-b border-slate-700 pb-2 ${section.color}">${section.category}</h3>
-                        <ul class="space-y-1">
-                `;
-                section.items.forEach((item, iIndex) => {
-                    menuHTML += `
-                        <li>
-                            <button onclick="showContent(${sIndex}, ${iIndex}, this)" class="nav-item w-full text-left px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-700/50 transition-colors text-sm font-medium">
-                                ${item.title}
-                            </button>
-                        </li>
-                    `;
-                });
-                menuHTML += `</ul></div>`;
-            });
-            menuContainer.innerHTML = menuHTML;
-        }
-
-        function showContent(sIndex, iIndex, btnElement) {
-            // Aktif buton stili
-            document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
-            if(btnElement) btnElement.classList.add('active');
-
-            // Ekranları değiştir
-            document.getElementById('empty-state').classList.add('hidden');
-            document.getElementById('content-container').classList.remove('hidden');
-
-            const data = studyData[sIndex].items[iIndex];
-            const category = studyData[sIndex].category;
-
-            document.getElementById('c-category').innerText = category;
-            document.getElementById('c-title').innerText = data.title;
-            document.getElementById('c-summary').innerText = data.summary;
+        <aside class="lg:col-span-1 h-fit sticky top-8 bg-slate-800 border border-slate-700 rounded-2xl p-5 shadow-xl">
+            <a href="./index.html" class="text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-2 mb-6 text-sm font-bold border-b border-slate-700 pb-4">
+                ← Ana Menüye Dön
+            </a>
+            <h2 class="text-lg font-black text-white mb-4 uppercase tracking-widest">İçindekiler</h2>
             
-            // Detayları madde madde bas
-            const detailsHTML = `<ul class="list-disc pl-5 space-y-3">` + 
-                data.details.map(d => `<li>${d}</li>`).join('') + `</ul>`;
-            document.getElementById('c-details').innerHTML = detailsHTML;
+            <details class="mb-2" open>
+                <summary class="font-bold text-slate-200 hover:text-blue-400 py-2 border-b border-slate-700/50">L1: Fiziksel Katman</summary>
+                <ul class="pl-4 mt-2 space-y-2 text-sm text-slate-400">
+                    <li><a href="#l1-1" class="hover:text-blue-400">1.1. Sinyalleme</a></li>
+                    <li><a href="#l1-2" class="hover:text-blue-400">1.2. İletim Ortamları</a></li>
+                    <li><a href="#l1-3" class="hover:text-blue-400">1.3. L1 Donanımları</a></li>
+                </ul>
+            </details>
+            
+            <details class="mb-2" open>
+                <summary class="font-bold text-slate-200 hover:text-emerald-400 py-2 border-b border-slate-700/50">L2: Veri Bağı Katmanı</summary>
+                <ul class="pl-4 mt-2 space-y-2 text-sm text-slate-400">
+                    <li><a href="#l2-1" class="hover:text-emerald-400">2.1. LLC ve MAC</a></li>
+                    <li><a href="#l2-2" class="hover:text-emerald-400">2.2. Çekirdek Mekanizmalar</a></li>
+                    <li><a href="#l2-3" class="hover:text-emerald-400">2.3. MAC Teknolojileri</a></li>
+                    <li><a href="#l2-4" class="hover:text-emerald-400">2.4. L2 Ağ Cihazları</a></li>
+                </ul>
+            </details>
+        </aside>
 
-            // İpucu varsa göster
-            const tipContainer = document.getElementById('c-tip-container');
-            if (data.tip) {
-                document.getElementById('c-tip').innerText = data.tip;
-                tipContainer.classList.remove('hidden');
-            } else {
-                tipContainer.classList.add('hidden');
-            }
-        }
+        <main class="lg:col-span-3 space-y-12">
+            
+            <header class="bg-gradient-to-r from-blue-900/50 to-emerald-900/50 border border-slate-700 p-8 rounded-3xl relative overflow-hidden">
+                <div class="relative z-10">
+                    <span class="bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-4 inline-block">Kapsamlı Rehber</span>
+                    <h1 class="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">Fiziksel ve Veri Bağı Katmanı</h1>
+                    <p class="text-lg text-slate-300 max-w-2xl">OSI Referans Modelinin donanım ve protokollere en yakın olan katmanlarının süreçlerini yapısal olarak inceleyin.</p>
+                </div>
+            </header>
 
-        loadMenu();
-    </script>
+            <section class="bg-slate-800 border border-slate-700 p-6 md:p-10 rounded-3xl shadow-lg">
+                <div class="flex items-center gap-4 mb-8 border-b border-slate-700 pb-4">
+                    <span class="text-5xl font-black text-slate-700">L1</span>
+                    <h2 class="text-3xl font-bold text-blue-400">Fiziksel Katman (Physical)</h2>
+                </div>
+                
+                <p class="text-lg leading-relaxed mb-8">Fiziksel katmanda veri sıradan bir bit dizisi (0 ve 1) olarak kabul edilir ve bitlerin taşıdığı anlam bu katmanda <strong class="text-white">kesinlikle yorumlanmaz</strong>. Temel amaç verinin elektriksel, optik veya elektromanyetik işaretlere dönüştürülüp karşı tarafa ulaştırılmasıdır.</p>
+
+                <div id="l1-1" class="mb-10">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2"><span class="w-2 h-6 bg-blue-500 rounded-full"></span> 1.1. Temel İşlevler ve Sinyalleme</h3>
+                    <ul class="list-disc pl-6 space-y-3">
+                        <li><strong class="text-blue-300">Kodlama (Encoding):</strong> Üst katmandan gelen veriler iletim ortamına uygun kodlara çevrilir (Örn: Manchester, NRZ, NRZ-I).</li>
+                        <li><strong class="text-blue-300">Bit Senkronizasyonu:</strong> Alıcı ve gönderici arasında bit seviyesinde zamanlama ayarlanır. (Asenkron ve Senkron olarak ikiye ayrılır).</li>
+                        <li><strong class="text-blue-300">Bant Genişliği:</strong> Ortamın tüm kapasitesi tek bir kanal için ayrılırsa <em>Baseband</em>, çok sayıda frekanslı kanala bölünürse <em>Broadband</em> denir.</li>
+                    </ul>
+                    
+                    <div class="mt-6 bg-blue-900/20 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                        <strong class="text-blue-400 block mb-1">Çoğullama (Multiplexing) Nedir?</strong>
+                        <p class="text-sm">Tek bir iletim kanalından birçok kanal oluşturma işlemidir. Elektriksel ortamlarda FDM (Frekans) ve TDM (Zaman) kullanılırken; fiber optik ortamlarda farklı dalga boylarındaki ışıkları birleştiren WDM kullanılır.</p>
+                    </div>
+                </div>
+
+                <div id="l1-2" class="mb-10">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2"><span class="w-2 h-6 bg-blue-500 rounded-full"></span> 1.2. İletim Ortamları</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-slate-900 p-5 rounded-xl border border-slate-700">
+                            <strong class="text-white block mb-2">Çift Burgulu (Twisted Pair)</strong>
+                            <p class="text-sm text-slate-400">Elektriksel parazitleri azaltmak için teller sarmaldır. RJ-45 konnektörü ile sonlandırılır. Aynı tür cihazları bağlamak için (PC-PC) 568A ve 568B standartlarında çapraz bağlantı yapılır.</p>
+                        </div>
+                        <div class="bg-slate-900 p-5 rounded-xl border border-slate-700">
+                            <strong class="text-white block mb-2">Fiber Optik</strong>
+                            <p class="text-sm text-slate-400">Veriyi ışık dalgasıyla (Lazer/LED) iletir. Elektromanyetik gürültüden etkilenmez, bant genişliği Tbps seviyesindedir. ST ve SC konnektörleri kullanılır.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="l1-3">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2"><span class="w-2 h-6 bg-blue-500 rounded-full"></span> 1.3. L1 Donanımları</h3>
+                    <ul class="space-y-4">
+                        <li class="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
+                            <strong class="text-blue-300">Repeater (Yineleyici):</strong> Bozulan sinyali temizler, kuvvetlendirir ve mesafeyi uzatır.
+                        </li>
+                        <li class="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
+                            <strong class="text-blue-300">Hub:</strong> Çok portlu sinyal dağıtıcısıdır. Gelen bilgiyi kopyalayıp herkese yollar. Veriyi okuyamaz (Akılsızdır).
+                        </li>
+                        <li class="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
+                            <strong class="text-blue-300">Modem:</strong> Dijital veriyi analog sinyale çevirir (Modülasyon). AM, FM, PM tekniklerini kullanır.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="bg-slate-800 border border-slate-700 p-6 md:p-10 rounded-3xl shadow-lg">
+                <div class="flex items-center gap-4 mb-8 border-b border-slate-700 pb-4">
+                    <span class="text-5xl font-black text-slate-700">L2</span>
+                    <h2 class="text-3xl font-bold text-emerald-400">Veri Bağı Katmanı (Data Link)</h2>
+                </div>
+                
+                <p class="text-lg leading-relaxed mb-8">Limitsiz bit dizilerini ağ katmanından aldığı paketlerle birleştirerek donanımdan donanıma hatasız bir <strong class="text-white">"düğümden düğüme (hop-to-hop)"</strong> iletim sağlar.</p>
+
+                <div id="l2-1" class="mb-10">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2"><span class="w-2 h-6 bg-emerald-500 rounded-full"></span> 2.1. İki Alt Katman</h3>
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="flex-1 bg-slate-900 border-l-4 border-emerald-500 p-4 rounded-r-lg">
+                            <strong class="text-emerald-400 block mb-1">LLC (Mantıksal Bağlantı Kontrolü)</strong>
+                            <p class="text-sm">İşin yazılımsal yönüdür. Çerçeveleme, Hata Sezme (CRC) ve Akış kontrolü işlemlerini yönetir.</p>
+                        </div>
+                        <div class="flex-1 bg-slate-900 border-l-4 border-emerald-500 p-4 rounded-r-lg">
+                            <strong class="text-emerald-400 block mb-1">MAC (Ortama Erişim Kontrolü)</strong>
+                            <p class="text-sm">İşin donanımsal yönüdür (NIC çipindedir). Ortak kabloyu kimin kullanacağına karar verir.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="l2-2" class="mb-10">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2"><span class="w-2 h-6 bg-emerald-500 rounded-full"></span> 2.2. Çekirdek Mekanizmalar</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <strong class="text-emerald-300 block mb-2">A. Çerçeveleme (Framing)</strong>
+                            <p class="text-sm text-slate-400 mb-2">Karakter düzenli çerçevelerde ASCII kullanılırken, Bit düzenli çerçevelerde (HDLC/PPP) özel bit dizileri kullanılır.</p>
+                            <code class="block bg-black text-green-400 p-3 rounded-lg text-center tracking-[0.2em] font-mono border border-slate-700">01111110 (HDLC Bayrağı)</code>
+                        </div>
+
+                        <div>
+                            <strong class="text-emerald-300 block mb-2">B. Hata ve Akış Kontrolü</strong>
+                            <ul class="list-disc pl-6 text-sm text-slate-400 space-y-2">
+                                <li><strong class="text-slate-200">FEC & ARQ:</strong> İleri yönlü hata düzeltme veya otomatik tekrar isteği. (Örn: Parity, CRC)</li>
+                                <li><strong class="text-slate-200">Akış Kontrolü:</strong> Hızlı göndericinin yavaş alıcıyı boğmasını Dur-Bekle veya Kayan Pencere metodlarıyla engeller.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-amber-900/20 border border-amber-500/30 p-4 rounded-xl">
+                            <strong class="text-amber-400 block mb-1">MAC Adresleme Kuralları</strong>
+                            <p class="text-sm text-slate-300">48 bitlik hexadecimal adreslerdir. İlk bit <strong>00</strong> ise Unicast, <strong>01</strong> ise Multicast, adresin tamamı <strong>F</strong> ise Broadcast yapılır.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="l2-3" class="mb-10">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2"><span class="w-2 h-6 bg-emerald-500 rounded-full"></span> 2.3. MAC Teknolojileri</h3>
+                    <ul class="list-disc pl-6 space-y-3">
+                        <li><strong class="text-white">Ethernet (CSMA/CD):</strong> Hattı dinler. Boşsa basar, çarpışma (Collision) olursa voltajdan sezer ve bekler.</li>
+                        <li><strong class="text-white">Token Ring:</strong> Ağda dönen 3 byte'lık "Jetonu" kapan veri yollar. Çarpışmasız teknolojidir.</li>
+                        <li><strong class="text-white">Wireless LAN (CSMA/CA):</strong> Çarpışmayı önceden sezemediği için "Çarpışmadan Kaçınma" algoritmaları kullanır.</li>
+                    </ul>
+                </div>
+
+                <div id="l2-4">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2"><span class="w-2 h-6 bg-emerald-500 rounded-full"></span> 2.4. L2 Ağ Cihazları</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-slate-900 p-5 rounded-xl border border-slate-700">
+                            <strong class="text-emerald-400 block text-lg mb-2">Switch (Anahtar)</strong>
+                            <p class="text-sm text-slate-400">Üzerinde port-MAC eşleştirmelerini tuttuğu akıllı tablosu vardır. Hedef MAC adresine yollar, ağdaki çarpışmaları bitirir.</p>
+                        </div>
+                        <div class="bg-slate-900 p-5 rounded-xl border border-slate-700">
+                            <strong class="text-emerald-400 block text-lg mb-2">Bridge (Köprü)</strong>
+                            <p class="text-sm text-slate-400">Farklı topolojideki ağları MAC tablosuyla bağlar ve gereksiz trafiği engeller. Switch'in ilkel halidir.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <footer class="text-center text-slate-500 text-sm mt-12 pb-8 border-t border-slate-800 pt-8">
+                Geliştiren: Husnul66 | Bilgisayar Ağları Açık Kaynak Kütüphanesi
+            </footer>
+        </main>
+    </div>
 </body>
 </html>
